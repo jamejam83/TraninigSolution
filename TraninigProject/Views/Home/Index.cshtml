@@ -1,0 +1,58 @@
+﻿@model List<TraninigProject.Models.Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@using (Html.BeginForm("Search", "Home", method: FormMethod.Post))
+{
+    <div class="row" style="padding-bottom: 10px;direction:rtl;">
+        <table>
+            <tr>
+                <td><div style="text-align:right;padding-left:15px;">@Html.Label("", "دسته بندی", new { @class = "control-label", @style = "font-weight:bold;" })</div></td>
+                <td><div style="padding-left:15px;">@Html.DropDownList("Category", new List<SelectListItem> { new SelectListItem { Text = "" }, new SelectListItem { Text = "پوشاک" }, new SelectListItem { Text = "غذا" }, new SelectListItem { Text = "بهداشتی" } }, new { @class = "form-control" ,@style="width:300px;" })</div></td>
+                <td> <input id="btnsubmit" type="submit" value="جستجو" class="btn btn-primary btn-large" /></td>
+            </tr>
+        </table>
+       
+    </div>   
+}
+
+            <div class="row" style="padding-bottom: 10px;direction:rtl;">
+                @foreach (Product product in Model)
+                {
+                    <div style="float:right;width:250px;padding:20px 0px;">
+                        <div style="text-align:center;">
+                            @if (product.Images.Count > 0)
+                            {
+                                <img src="~/images/@product.Images[0].Location" style="width:150px;height:150px" />
+                            }
+                            else
+                            {
+                                <img src="~/images/noneimages.png" style="width:150px;height:150px" />
+
+                            }
+                        </div>
+                        <div style="text-align:center;font-weight:bold;padding:">
+                            @Html.DisplayFor(modelItem => product.ProductName)
+                        </div>
+                        <div style="text-align:center;direction:rtl;">
+                            @Html.DisplayFor(modelItem => product.Price)
+                            ریال
+                        </div>
+                        <div style="direction:rtl;padding: 10px 55px;font-size:15px;">
+                            <div style="float:right;font-weight:bold;">@Html.Label("دسته بندی : ")</div>
+                            <div style="float:right;padding-right:5px;">@Html.DisplayFor(modelItem => product.Category)</div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;direction:rtl;padding:5px 0px;">
+                            <a asp-controller="Home" asp-action="Details" asp-route-pid="@product.ProductId">مشاهده و خرید</a>
+                        </div>
+                    </div>
+                }
+                </div>
+
+
+
+

@@ -1,0 +1,56 @@
+﻿@model TraninigProject.Models.Cart
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+<h1 style="text-align: right;">سبد خرید</h1>
+
+@if (Model != null && Model.Orders.Count>0)
+{
+<table class="table" style="direction: rtl;">
+    <thead>
+        <tr>
+            
+            <th scope="col">محصول</th>
+            <th scope="col">قیمت(واحد)</th>
+            <th scope="col">تعداد</th>
+            <th scope="col">قیمت کل</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int sumcost = 0;
+            @foreach (OrderLine ol in Model.Orders)
+            {
+                sumcost = (sumcost + (ol.Count * (int)ol.OrderLineItem.Price));
+        <tr>
+            
+            <td> <a asp-controller="Home" asp-action="Details" asp-route-pid="@ol.OrderLineItem.ProductId">@Html.DisplayFor(ModelItem => ol.OrderLineItem.ProductName)</a></td>
+            <td>@Html.DisplayFor(ModelItem => ol.OrderLineItem.Price)</td>
+            <td>@Html.DisplayFor(ModelItem => ol.Count)</td>
+            <td>@(ol.Count * ol.OrderLineItem.Price)</td>
+            <td><a asp-action="DeleteOrderLine" asp-route-pid="@ol.OrderLineItem.ProductId">حذف</a></td>
+</tr>
+            }
+    <tr>
+        
+        <td><h4>مجموع</h4></td>
+        <td></td>
+        <td></td>
+        <td><h4>@sumcost</h4></td>
+        <td></td>
+    </tr>
+        }
+    </tbody>
+</table>
+   
+}
+else
+{
+    <h2>سبد خرید خالی است</h2>
+}
+
+<div style="text-align:left;">
+    <a href="~/Home">صفحه اصلی</a>
+</div>
+

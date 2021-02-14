@@ -1,0 +1,35 @@
+﻿@model TraninigProject.Models.Product
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>مشاهده جزئیات محصول</h1>
+<table style="direction:rtl;">
+    <tr>
+        <td style="width:25%;">
+            @foreach(ProductImage pi in Model.Images)
+            {
+            <div style="float:right;padding:10px;">
+                <img src="~/images/@pi.Location" style="width:200px;height:200px;" />
+            </div>
+            }
+        </td>
+        <td style="width:75%;direction:rtl;text-align:right;">
+            <h3>@Model.ProductName</h3>
+            <h4>قیمت : @Model.Price ریال</h4>
+            <h4>دسته بندی : @Model.Category </h4>
+            <div>
+                @using (Html.BeginForm("AddOrderLine", "Home", method: FormMethod.Post))
+                {
+                    @Html.HiddenFor(c => c.ProductId);
+                    <span>تعداد </span>
+                    @Html.Editor("Count");
+                    <input id="btnsubmit" type="submit" value="افزودن به سبد خرید" class="btn btn-primary btn-large" />
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+<div style="text-align:left;">
+    <a href="~/Home">بازگشت</a>
+</div>

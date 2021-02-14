@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\berenj1.jpg" />
+    <None Include="wwwroot\images\berenj2.jpg" />
+    <None Include="wwwroot\images\kolah1.jpg" />
+    <None Include="wwwroot\images\kolah2.jpg" />
+    <None Include="wwwroot\images\kolah3.jpg" />
+    <None Include="wwwroot\images\noneimages.png" />
+    <None Include="wwwroot\images\pir1.jpg" />
+    <None Include="wwwroot\images\pir2.jpg" />
+    <None Include="wwwroot\images\sab1.jpg" />
+    <None Include="wwwroot\images\shampoo1.jpg" />
+    <None Include="wwwroot\images\shampoo2.jpg" />
+    <None Include="wwwroot\images\shampoo3.jpg" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="contents\" />
+  </ItemGroup>
+
+</Project>
